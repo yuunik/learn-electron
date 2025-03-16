@@ -1,5 +1,10 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+const fs = require('fs');
+
+const getMyData = (_, data) => {
+    fs.writeFileSync(path.resolve(__dirname, './data.txt'),data)
+}
 
 // 控制窗口完善行为
 const createWindow = () => {
@@ -11,6 +16,8 @@ const createWindow = () => {
             preload: path.resolve(__dirname, './preload.js')
         }
     })
+    ipcMain.on('file-save', getMyData)
+    // 加载页面
     win.loadFile(path.join(__dirname, './pages/home/index.html'))
 }
 

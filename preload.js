@@ -1,7 +1,10 @@
 console.log('Hello, world!', process.versions)
 
-const { contextBridge } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
-    version: process.versions
+    version: process.versions,
+    saveFile: (data) => {
+        ipcRenderer.send('file-save', data)
+    }
 })
