@@ -1,0 +1,17 @@
+{
+  "name": "learn-electron",
+  "version": "1.0.0",
+  "description": "my first electron app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec electron ."
+  },
+  "keywords": [],
+  "author": "yuunik",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^35.0.1",
+    "nodemon": "^3.1.9"
+  }
+}
