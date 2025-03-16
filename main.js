@@ -6,6 +6,10 @@ const getMyData = (_, data) => {
     fs.writeFileSync(path.resolve(__dirname, './data.txt'),data)
 }
 
+const readFile = () => {
+    return fs.readFileSync(path.resolve(__dirname, './data.txt'), { encoding: 'utf-8'}).toString();
+}
+
 // 控制窗口完善行为
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -16,7 +20,10 @@ const createWindow = () => {
             preload: path.resolve(__dirname, './preload.js')
         }
     })
+    // 订阅消息
     ipcMain.on('file-save', getMyData)
+    // 发布小心
+    ipcMain.handle('file-read', readFile)
     // 加载页面
     win.loadFile(path.join(__dirname, './pages/home/index.html'))
 }
