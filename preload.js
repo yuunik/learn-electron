@@ -10,5 +10,4 @@ contextBridge.exposeInMainWorld('api', {
     },
     // 读取文件
     readFile: () => ipcRenderer.invoke('file-read')
-
 })
